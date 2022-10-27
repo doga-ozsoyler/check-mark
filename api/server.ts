@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose, { ConnectOptions } from "mongoose";
+import userRoutes from "./routes/userRoutes";
 require("dotenv").config();
 
 const port = 8080;
@@ -17,5 +18,7 @@ mongoose.connect(
     console.log("Database connected");
   }
 );
+
+app.use("/api/user", userRoutes);
 
 app.listen(port, () => console.log(`Server running at PORT ${port}`));
