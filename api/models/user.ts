@@ -1,11 +1,5 @@
 import mongoose from "mongoose";
-
-interface IUser {
-  name: string;
-  email: string;
-  password: string;
-  checkNumber: number;
-}
+import { IUser } from "../config/interface";
 
 const UserSchema = new mongoose.Schema<IUser>({
   name: { type: String, require: true },
