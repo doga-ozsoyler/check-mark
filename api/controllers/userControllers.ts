@@ -1,4 +1,5 @@
 import { RequestHandler, Request, Response } from "express";
+import { IReqAuth } from "../config/interface";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user";
@@ -45,6 +46,32 @@ export const signinController: RequestHandler = async (
     });
 
     return res.json({ message: "Signin Success!", token: token });
+  } catch (error: any) {
+    res.json(error);
+  }
+};
+
+export const getUserController: RequestHandler = async (
+  req: IReqAuth,
+  res: Response
+) => {
+  if (!req.user) return res.json({ message: "Invalid Authentication" });
+
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    res.json(user);
+  } catch (error: any) {
+    res.json(error);
+  }
+};
+
+export const updateCheckController: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { checkNumber } = req.body;
   } catch (error: any) {
     res.json(error);
   }
