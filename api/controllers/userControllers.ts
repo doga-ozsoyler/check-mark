@@ -66,12 +66,43 @@ export const getUserController: RequestHandler = async (
   }
 };
 
-export const updateCheckController: RequestHandler = async (
-  req: Request,
+export const updateUserController: RequestHandler = async (
+  req: IReqAuth,
   res: Response
 ) => {
+  if (!req.user) return res.json({ message: "Invalid Authentication" });
+
   try {
-    const { checkNumber } = req.body;
+    await User.findByIdAndUpdate(
+      { _id: req.user.id },
+      {
+        name: req?.body?.name,
+        email: req?.body?.email,
+        password: req?.body?.password,
+      }
+    );
+
+    res.json({ message: "Update Success!" });
+  } catch (error: any) {
+    res.json(error);
+  }
+};
+
+export const updateCheckController: RequestHandler = async (
+  req: IReqAuth,
+  res: Response
+) => {
+  if (!req.user) return res.json({ message: "Invalid Authentication" });
+
+  try {
+    await User.findByIdAndUpdate(
+      { _id: req.user.id },
+      {
+        checkNumber: req?.body?.checkNumber,
+      }
+    );
+
+    res.json({ message: "Update Success!" });
   } catch (error: any) {
     res.json(error);
   }
