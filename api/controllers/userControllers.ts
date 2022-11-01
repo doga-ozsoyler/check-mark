@@ -107,3 +107,18 @@ export const updateCheckController: RequestHandler = async (
     res.json(error);
   }
 };
+
+export const deleteUserController: RequestHandler = async (
+  req: IReqAuth,
+  res: Response
+) => {
+  if (!req.user) return res.json({ message: "Invalid Authentication" });
+
+  try {
+    await User.findByIdAndDelete({ _id: req.user.id });
+
+    res.json({ message: "Delete Success!" });
+  } catch (error: any) {
+    res.json(error);
+  }
+};
