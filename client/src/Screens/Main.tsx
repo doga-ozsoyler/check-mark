@@ -34,6 +34,14 @@ const MainScreen: FC = () => {
     );
   };
 
+  const clearCheckMark = async () => {
+    setCheckMark([]);
+    await AsyncStorage.setItem(
+      "@checkMark",
+      JSON.stringify({ checkMark: checkMark })
+    );
+  };
+
   useEffect(() => {
     getLocalData();
   }, []);
@@ -49,7 +57,7 @@ const MainScreen: FC = () => {
             h="100%"
             w="350"
           >
-            <Button onPress={() => setCheckMark([])}>Clear</Button>
+            <Button onPress={clearCheckMark}>Clear</Button>
             <Button onPress={decreaseCheckMark}>-</Button>
           </HStack>
         </View>
