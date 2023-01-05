@@ -5,7 +5,6 @@ import ScreenPressable from "../Components/ScreenPressable";
 
 const MainScreen: FC = () => {
   const [checkMark, setCheckMark] = useState<number[]>([]);
-  const [strokeNum, setStrokeNum] = useState<number>(0);
 
   const getLocalData = async () => {
     const value = await AsyncStorage.getItem("@checkMark:checkMark");
@@ -14,9 +13,6 @@ const MainScreen: FC = () => {
     if (parsedValue) {
       setCheckMark(
         parsedValue.checkMark !== null ? parsedValue.checkMark : checkMark
-      );
-      setStrokeNum(
-        parsedValue.strokeNum !== null ? parsedValue.strokeNum : strokeNum
       );
     }
   };
@@ -32,10 +28,9 @@ const MainScreen: FC = () => {
       setCheckMark(newArr);
     }
 
-    setStrokeNum(strokeNum - 1);
     await AsyncStorage.setItem(
       "@checkMark",
-      JSON.stringify({ strokeNum: strokeNum, checkMark: checkMark })
+      JSON.stringify({ checkMark: checkMark })
     );
   };
 
