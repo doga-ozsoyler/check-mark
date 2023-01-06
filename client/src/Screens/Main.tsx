@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { NativeBaseProvider, View } from "native-base";
+import { NativeBaseProvider, View, Text } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ScreenPressable from "../Components/ScreenPressable";
 import ButtonGroup from "../Components/ButtonGroup";
@@ -18,6 +18,10 @@ const MainScreen: FC = () => {
     }
   };
 
+  const getMarkNumber = () => {
+    return (checkMark.length - 1) * 5 + checkMark[checkMark.length - 1];
+  };
+
   useEffect(() => {
     getLocalData();
   }, []);
@@ -25,7 +29,11 @@ const MainScreen: FC = () => {
   return (
     <NativeBaseProvider>
       <View flex="1">
-        <View flex="1" justifyContent="flex-end">
+        <View flexDirection="row" flex="1" justifyContent="space-between">
+          <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
+            {getMarkNumber() ? getMarkNumber() : 0}
+          </Text>
+
           <ButtonGroup checkMark={checkMark} setCheckMark={setCheckMark} />
         </View>
         <View flex="10">
