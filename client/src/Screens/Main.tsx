@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
-import { NativeBaseProvider, View, Text } from "native-base";
+import { StyleSheet } from "react-native";
+import { View, Text } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ScreenPressable from "../Components/ScreenPressable";
 import ButtonGroup from "../Components/ButtonGroup";
@@ -27,21 +28,26 @@ const MainScreen: FC = () => {
   }, []);
 
   return (
-    <NativeBaseProvider>
-      <View flex="1">
-        <View flexDirection="row" flex="1" justifyContent="space-between">
-          <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
-            {getMarkNumber() ? getMarkNumber() : 0}
-          </Text>
+    <View style={styles.container}>
+      <View flexDirection="row" flex="1" justifyContent="space-between">
+        <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
+          {getMarkNumber() ? getMarkNumber() : 0}
+        </Text>
 
-          <ButtonGroup checkMark={checkMark} setCheckMark={setCheckMark} />
-        </View>
-        <View flex="10">
-          <ScreenPressable checkMark={checkMark} setCheckMark={setCheckMark} />
-        </View>
+        <ButtonGroup checkMark={checkMark} setCheckMark={setCheckMark} />
       </View>
-    </NativeBaseProvider>
+      <View flex="10">
+        <ScreenPressable checkMark={checkMark} setCheckMark={setCheckMark} />
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#2D3033",
+  },
+});
 
 export default MainScreen;
