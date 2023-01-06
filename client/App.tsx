@@ -16,7 +16,7 @@ const App: FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#005C53",
+    backgroundColor: "#2D3033",
     alignItems: "center",
     justifyContent: "center",
   },
