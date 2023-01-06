@@ -1,11 +1,14 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { View, Text } from "native-base";
+import { View, Text, Button } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ScreenPressable from "../Components/ScreenPressable";
 import ButtonGroup from "../Components/ButtonGroup";
+interface Props {
+  navigation: any;
+}
 
-const MainScreen: FC = () => {
+const MainScreen: FC<Props> = ({ navigation }) => {
   const [checkMark, setCheckMark] = useState<number[]>([]);
 
   const getLocalData = async () => {
@@ -33,11 +36,27 @@ const MainScreen: FC = () => {
         <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
           {getMarkNumber() ? getMarkNumber() : 0}
         </Text>
-
         <ButtonGroup checkMark={checkMark} setCheckMark={setCheckMark} />
       </View>
       <View flex="10">
         <ScreenPressable checkMark={checkMark} setCheckMark={setCheckMark} />
+      </View>
+      <View flex="1">
+        <Button.Group
+          isAttached
+          alignSelf="center"
+          colorScheme="teal"
+          size="sm"
+          borderRadius="50"
+        >
+          <Button w="100px">Count</Button>
+          <Button
+            variant="outline"
+            onPress={() => navigation.navigate("CountdownScreen")}
+          >
+            Countdown
+          </Button>
+        </Button.Group>
       </View>
     </View>
   );
