@@ -49,17 +49,19 @@ const MainScreen: FC = () => {
   return (
     <NativeBaseProvider>
       <View flex="1">
-        <View flex="1">
-          <HStack
-            justifyContent="space-between"
-            alignItems="flex-end"
-            alignSelf="center"
-            h="100%"
-            w="350"
+        <View flex="1" justifyContent="flex-end">
+          <Button.Group
+            isAttached
+            alignSelf="flex-end"
+            colorScheme="teal"
+            size="sm"
+            mr={8}
           >
             <Button onPress={clearCheckMark}>Clear</Button>
-            <Button onPress={decreaseCheckMark}>-</Button>
-          </HStack>
+            <Button w="45px" variant="outline" onPress={decreaseCheckMark}>
+              -
+            </Button>
+          </Button.Group>
         </View>
         <View flex="10">
           <ScreenPressable checkMark={checkMark} setCheckMark={setCheckMark} />
