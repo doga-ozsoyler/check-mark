@@ -1,36 +1,27 @@
 import React, { FC, useState } from "react";
-import { Modal, Button, View, Input, Stack, Text } from "native-base";
+import { Button, View } from "native-base";
+import EnterNumberModal from "../Components/EnterNumberModal";
 
-const CountdownScreen: FC = () => {
-  const [visible, setVisible] = useState<boolean>(false);
+interface Props {
+  navigation: any;
+}
+
+const CountdownScreen: FC<Props> = ({ navigation }) => {
+  const [visible, setVisible] = useState<boolean>(true);
+  const [number, setNumber] = useState<string>("");
+
+  const handleChange = (number: string) => setNumber(number); //Also works: const handleChange: (number: string) => void = (number) => setNumber(number);
 
   return (
     <View flex="1" alignItems="center" justifyContent="center">
       <Button onPress={() => setVisible(true)}>Open Modal</Button>
-      <Modal isOpen={visible} onClose={() => setVisible(false)}>
-        <Modal.Content backgroundColor="#2D3033">
-          <Modal.Body>
-            <Stack alignItems="center">
-              <Text color="#fff" fontSize="lg" mb={4} bold>
-                Enter A Number
-              </Text>
-              <Input
-                w="270px"
-                size="md"
-                keyboardType="numeric"
-                placeholder="39"
-                mb={8}
-              />
-              <Button colorScheme="teal" w="70px" borderRadius="50">
-                OK
-              </Button>
-              <Button colorScheme="teal" variant="link" borderRadius="50">
-                Cancel
-              </Button>
-            </Stack>
-          </Modal.Body>
-        </Modal.Content>
-      </Modal>
+      <EnterNumberModal
+        navigation={navigation}
+        visible={visible}
+        setVisible={setVisible}
+        number={number}
+        handleChange={handleChange}
+      />
     </View>
   );
 };
