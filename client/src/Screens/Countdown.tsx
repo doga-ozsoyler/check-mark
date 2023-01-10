@@ -30,11 +30,13 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
       }
     }
     setNumberArray(newArray);
+    setNumber((parseInt(number) > 0 ? parseInt(number) - 1 : 0).toString());
   };
 
   const clearSquare = () => {
     let tempArray = [...numberArray];
     setNumberArray(tempArray.fill(false));
+    setNumber(tempArray.length.toString());
   };
 
   const deleteCross = () => {
@@ -46,6 +48,12 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
       }
     }
     setNumberArray(newArray);
+
+    let tempNum =
+      parseInt(number) + 1 <= numberArray.length
+        ? parseInt(number) + 1
+        : parseInt(number);
+    setNumber(tempNum.toString());
   };
 
   return (
