@@ -10,8 +10,27 @@ interface Props {
 const CountdownScreen: FC<Props> = ({ navigation }) => {
   const [visible, setVisible] = useState<boolean>(true);
   const [number, setNumber] = useState<string>("");
+  const [numberArray, setNumberArray] = useState<boolean[]>([]);
 
-  const handleChange = (number: string) => setNumber(number); //Also works: const handleChange: (number: string) => void = (number) => setNumber(number);
+  const handleChange = (number: string) => {
+    //Also works: const handleChange: (number: string) => void = (number) => setNumber(number);
+    setNumber(number);
+
+    if (parseInt(number)) {
+      setNumberArray(Array(parseInt(number)).fill(false));
+    }
+  };
+
+  const onPress = () => {
+    let newArray = [...numberArray];
+    for (let j = 0; j < newArray.length; j++) {
+      if (!newArray[j]) {
+        newArray[j] = true;
+        break;
+      }
+    }
+    setNumberArray(newArray);
+  };
 
   return (
     <View style={styles.container}>
@@ -24,23 +43,29 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
       />
       <View flexDirection="row" flex="1" justifyContent="space-between">
         <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
-          {number}
+          {parseInt(number) ? parseInt(number) : 0}
         </Text>
       </View>
       <View flex="10">
-        <Pressable
-          onPress={() => console.log("pressed")}
-          h="100%"
-          w="430"
-          paddingLeft={10}
-        >
+        <Pressable onPress={onPress} h="100%" w="430" paddingLeft={10}>
           <HStack flexWrap="wrap" h="95%" w="375" mt={5}>
-            {Array(Number(number))
-              .fill(true)
-              .map((_, index) => {
-                return (
+            {numberArray.map((el, index) => {
+              {
+                return !el ? (
+                  <View key={index}>
+                    <Image
+                      source={require(`../../assets/empty-square.png`)}
+                      h="22"
+                      w="22"
+                      resizeMode="contain"
+                      alt="1"
+                      mr={(index + 1) % 5 === 0 ? 3 : 0}
+                      mb={2}
+                    />
+                  </View>
+                ) : (
                   <Image
-                    source={require(`../../assets/empty-square.png`)}
+                    source={require(`../../assets/full-square.png`)}
                     h="22"
                     w="22"
                     resizeMode="contain"
@@ -50,7 +75,8 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
                     key={index}
                   />
                 );
-              })}
+              }
+            })}
           </HStack>
         </Pressable>
       </View>
