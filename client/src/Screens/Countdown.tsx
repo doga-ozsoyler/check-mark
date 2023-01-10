@@ -83,7 +83,13 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         </Button.Group>
       </View>
       <View flex="10">
-        <Pressable onPress={onPress} h="100%" w="430" paddingLeft={10}>
+        <Pressable
+          onPress={onPress}
+          h="100%"
+          w="430"
+          paddingLeft={10}
+          onLongPress={() => setVisible(true)}
+        >
           <HStack flexWrap="wrap" h="95%" w="375" mt={5}>
             {numberArray.map((el, index) => {
               {
