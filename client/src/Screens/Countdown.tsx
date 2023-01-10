@@ -32,6 +32,22 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     setNumberArray(newArray);
   };
 
+  const clearSquare = () => {
+    let tempArray = [...numberArray];
+    setNumberArray(tempArray.fill(false));
+  };
+
+  const deleteCross = () => {
+    let newArray = [...numberArray];
+    for (let i = newArray.length - 1; i >= 0; i--) {
+      if (newArray[i]) {
+        newArray[i] = false;
+        break;
+      }
+    }
+    setNumberArray(newArray);
+  };
+
   return (
     <View style={styles.container}>
       <EnterNumberModal
@@ -45,6 +61,18 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
           {parseInt(number) ? parseInt(number) : 0}
         </Text>
+        <Button.Group
+          isAttached
+          alignSelf="flex-end"
+          colorScheme="teal"
+          size="sm"
+          mr={8}
+        >
+          <Button onPress={clearSquare}>Clear</Button>
+          <Button w="45px" variant="outline" onPress={deleteCross}>
+            +
+          </Button>
+        </Button.Group>
       </View>
       <View flex="10">
         <Pressable onPress={onPress} h="100%" w="430" paddingLeft={10}>
