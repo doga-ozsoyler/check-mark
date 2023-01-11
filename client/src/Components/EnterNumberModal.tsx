@@ -1,5 +1,6 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import { Modal, Button, Input, Stack, Text } from "native-base";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Props {
   navigation: any;
@@ -11,6 +12,11 @@ interface Props {
 
 const EnterNumberModal: FC<Props> = (props) => {
   const { navigation, visible, setVisible, number, handleChange } = props;
+  const onPressOK = async () => {
+    setVisible(false);
+    await AsyncStorage.setItem("@checkMark:visible", JSON.stringify(visible));
+  };
+
   return (
     <Modal isOpen={visible} onClose={() => setVisible(false)}>
       <Modal.Content backgroundColor="#2D3033">
@@ -33,10 +39,7 @@ const EnterNumberModal: FC<Props> = (props) => {
               colorScheme="teal"
               w="70px"
               borderRadius="50"
-              onPress={() => {
-                setVisible(false);
-                console.log(number);
-              }}
+              onPress={onPressOK}
             >
               OK
             </Button>

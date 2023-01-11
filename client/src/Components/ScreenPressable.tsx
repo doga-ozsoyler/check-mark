@@ -22,8 +22,8 @@ const ScreenPressable: FunctionComponent<Props> = (props) => {
     }
 
     await AsyncStorage.setItem(
-      "@checkMark",
-      JSON.stringify({ checkMark: checkMark })
+      "@checkMark:checkMark",
+      JSON.stringify(checkMark)
     );
   };
 

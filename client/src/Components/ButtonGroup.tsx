@@ -22,16 +22,16 @@ const ButtonGroup: FunctionComponent<Props> = (props) => {
     }
 
     await AsyncStorage.setItem(
-      "@checkMark",
-      JSON.stringify({ checkMark: checkMark })
+      "@checkMark:checkMark",
+      JSON.stringify(checkMark)
     );
   };
 
   const clearCheckMark = async () => {
     setCheckMark([]);
     await AsyncStorage.setItem(
-      "@checkMark",
-      JSON.stringify({ checkMark: checkMark })
+      "@checkMark:checkMark",
+      JSON.stringify(checkMark)
     );
   };
   return (
