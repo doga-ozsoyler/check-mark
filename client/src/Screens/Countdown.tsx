@@ -1,8 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { Button, View, Text, Pressable, Image, HStack } from "native-base";
+import { Button, View, Text } from "native-base";
 import EnterNumberModal from "../Components/EnterNumberModal";
 import { setInMemory, getFromMemory } from "../Helpers/storage";
+import CountdownPressable from "../Components/CountdownPressable";
 interface Props {
   navigation: any;
 }
@@ -19,21 +20,6 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     if (parseInt(number)) {
       setNumberArray(Array(parseInt(number)).fill(false));
     }
-  };
-
-  const onPress = () => {
-    let newArray = [...numberArray];
-    for (let j = 0; j < newArray.length; j++) {
-      if (!newArray[j]) {
-        newArray[j] = true;
-        break;
-      }
-    }
-    setNumberArray(newArray);
-    setNumber((parseInt(number) > 0 ? parseInt(number) - 1 : 0).toString());
-
-    setInMemory("numberArray", numberArray);
-    setInMemory("number", number);
   };
 
   const clearSquare = () => {
@@ -101,49 +87,14 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
           </Button>
         </Button.Group>
       </View>
-      <View flex="10">
-        <Pressable
-          onPress={onPress}
-          h="100%"
-          w="430"
-          paddingLeft={10}
-          onLongPress={async () => {
-            setVisible(true);
-            setInMemory("visible", visible);
-          }}
-        >
-          <HStack flexWrap="wrap" h="95%" w="375" mt={5}>
-            {numberArray?.map((el, index) => {
-              {
-                return !el ? (
-                  <View key={index}>
-                    <Image
-                      source={require(`../../assets/empty-square.png`)}
-                      h="22"
-                      w="22"
-                      resizeMode="contain"
-                      alt="1"
-                      mr={(index + 1) % 5 === 0 ? 3 : 0}
-                      mb={2}
-                    />
-                  </View>
-                ) : (
-                  <Image
-                    source={require(`../../assets/full-square.png`)}
-                    h="22"
-                    w="22"
-                    resizeMode="contain"
-                    alt="1"
-                    mr={(index + 1) % 5 === 0 ? 3 : 0}
-                    mb={2}
-                    key={index}
-                  />
-                );
-              }
-            })}
-          </HStack>
-        </Pressable>
-      </View>
+      <CountdownPressable
+        numberArray={numberArray}
+        setNumberArray={setNumberArray}
+        number={number}
+        setNumber={setNumber}
+        visible={visible}
+        setVisible={setVisible}
+      />
       <View flex="1">
         <Button.Group
           isAttached

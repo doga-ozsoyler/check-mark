@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { View, Text, Button } from "native-base";
-import ScreenPressable from "../Components/ScreenPressable";
+import ScreenPressable from "../Components/MainPressable";
 import ButtonGroup from "../Components/ButtonGroup";
 import { getFromMemory } from "../Helpers/storage";
 interface Props {
