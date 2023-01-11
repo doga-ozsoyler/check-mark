@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, FunctionComponent } from "react";
 import { Button } from "native-base";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setInMemory } from "../Helpers/storage";
 
 interface Props {

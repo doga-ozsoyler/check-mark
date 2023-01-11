@@ -2,8 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { Button, View, Text, Pressable, Image, HStack } from "native-base";
 import EnterNumberModal from "../Components/EnterNumberModal";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { setInMemory } from "../Helpers/storage";
+import { setInMemory, getFromMemory } from "../Helpers/storage";
 interface Props {
   navigation: any;
 }
@@ -22,7 +21,7 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     }
   };
 
-  const onPress = async () => {
+  const onPress = () => {
     let newArray = [...numberArray];
     for (let j = 0; j < newArray.length; j++) {
       if (!newArray[j]) {
@@ -37,7 +36,7 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     setInMemory("number", number);
   };
 
-  const clearSquare = async () => {
+  const clearSquare = () => {
     let tempArray = [...numberArray];
     setNumberArray(tempArray.fill(false));
     setNumber(tempArray.length.toString());
@@ -46,7 +45,7 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     setInMemory("number", number);
   };
 
-  const deleteCross = async () => {
+  const deleteCross = () => {
     let newArray = [...numberArray];
     for (let i = newArray.length - 1; i >= 0; i--) {
       if (newArray[i]) {
@@ -67,28 +66,9 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
   };
 
   const getCountDown = async () => {
-    const value = await AsyncStorage.getItem("@checkMark:numberArray");
-    const parsedValue = value != null ? JSON.parse(value) : null;
-
-    if (parsedValue) {
-      setNumberArray(parsedValue !== null ? parsedValue : numberArray);
-    }
-
-    const storageValue = await AsyncStorage.getItem("@checkMark:number");
-    const storageParsedValue =
-      storageValue != null ? JSON.parse(storageValue) : null;
-
-    if (storageParsedValue) {
-      setNumber(storageParsedValue !== null ? storageParsedValue : number);
-    }
-
-    const visibleValue = await AsyncStorage.getItem("@checkMark:number");
-    const visibleParsedValue =
-      visibleValue != null ? JSON.parse(visibleValue) : null;
-
-    if (visibleParsedValue) {
-      setNumber(visibleParsedValue !== null ? visibleParsedValue : visible);
-    }
+    setNumberArray(await getFromMemory("numberArray", numberArray));
+    setNumber(await getFromMemory("number", number));
+    setVisible(await getFromMemory("visible", visible));
   };
 
   useEffect(() => {

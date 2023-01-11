@@ -1,6 +1,5 @@
 import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { Image, HStack, Pressable } from "native-base";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setInMemory } from "../Helpers/storage";
 
 interface Props {

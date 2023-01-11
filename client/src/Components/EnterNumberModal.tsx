@@ -1,6 +1,6 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import { Modal, Button, Input, Stack, Text } from "native-base";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setInMemory } from "../Helpers/storage";
 
 interface Props {
   navigation: any;
@@ -14,7 +14,7 @@ const EnterNumberModal: FC<Props> = (props) => {
   const { navigation, visible, setVisible, number, handleChange } = props;
   const onPressOK = async () => {
     setVisible(false);
-    await AsyncStorage.setItem("@checkMark:visible", JSON.stringify(visible));
+    setInMemory("visible", visible);
   };
 
   return (

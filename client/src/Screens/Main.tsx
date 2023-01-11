@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { View, Text, Button } from "native-base";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import ScreenPressable from "../Components/ScreenPressable";
 import ButtonGroup from "../Components/ButtonGroup";
+import { getFromMemory } from "../Helpers/storage";
 interface Props {
   navigation: any;
 }
@@ -12,12 +12,7 @@ const MainScreen: FC<Props> = ({ navigation }) => {
   const [checkMark, setCheckMark] = useState<number[]>([]);
 
   const getLocalData = async () => {
-    const value = await AsyncStorage.getItem("@checkMark:checkMark");
-    const parsedValue = value != null ? JSON.parse(value) : null;
-
-    if (parsedValue) {
-      setCheckMark(parsedValue !== null ? parsedValue : checkMark);
-    }
+    setCheckMark(await getFromMemory("checkMark", checkMark));
   };
 
   const getMarkNumber = () => {
