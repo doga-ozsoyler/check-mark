@@ -1,5 +1,4 @@
 import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
-import { View, Pressable, HStack } from "native-base";
 import { setInMemory } from "../Helpers/storage";
 import SquareImage from "./SquareImage";
 import CoveringPressable from "./CoveringPressable";
@@ -43,19 +42,14 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
     setInMemory("visible", visible);
   };
 
+  console.log("numberArray");
+  console.log(numberArray);
+  console.log("numberArray");
+
   return (
     <CoveringPressable onPress={tickUp} onLongPress={openModal}>
-      {numberArray?.map((el, index) => {
-        {
-          return !el ? (
-            <SquareImage
-              key={index}
-              pngPath={`../../assets/empty-square.png`}
-            />
-          ) : (
-            <SquareImage key={index} pngPath={`../../assets/full-square.png`} />
-          );
-        }
+      {numberArray?.map((element, index) => {
+        return <SquareImage index={index} squareType={element} />;
       })}
     </CoveringPressable>
   );

@@ -1,7 +1,8 @@
-import React, { FunctionComponent, PropsWithChildren, Children } from "react";
+import React, { FunctionComponent, PropsWithChildren } from "react";
 import { View, Pressable, HStack } from "native-base";
 
 interface Props {
+  children: React.ReactNode;
   onPress: () => void;
   onLongPress?: () => void;
 }
@@ -9,7 +10,7 @@ interface Props {
 const CoveringPressable: FunctionComponent<PropsWithChildren<Props>> = (
   props
 ) => {
-  const { onPress, onLongPress } = props;
+  const { onPress, onLongPress, children } = props;
 
   return (
     <View flex="10">
@@ -21,7 +22,7 @@ const CoveringPressable: FunctionComponent<PropsWithChildren<Props>> = (
         onLongPress={onLongPress}
       >
         <HStack flexWrap="wrap" h="95%" w="375" mt={5}>
-          {Children}
+          {children}
         </HStack>
       </Pressable>
     </View>

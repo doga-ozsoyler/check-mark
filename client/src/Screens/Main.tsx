@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { View, Text, Button } from "native-base";
-import ScreenPressable from "../Components/MainPressable";
+import MainPressable from "../Components/MainPressable";
 import ButtonGroup from "../Components/ButtonGroup";
 import { getFromMemory } from "../Helpers/storage";
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
 
 const MainScreen: FC<Props> = ({ navigation }) => {
   const [checkMark, setCheckMark] = useState<number[]>([]);
+  console.log(checkMark);
+  console.log(typeof checkMark);
 
   const getLocalData = async () => {
     setCheckMark(await getFromMemory("checkMark", checkMark));
@@ -21,6 +23,7 @@ const MainScreen: FC<Props> = ({ navigation }) => {
 
   useEffect(() => {
     getLocalData();
+    console.log(checkMark);
   }, []);
 
   return (
@@ -31,9 +34,7 @@ const MainScreen: FC<Props> = ({ navigation }) => {
         </Text>
         <ButtonGroup checkMark={checkMark} setCheckMark={setCheckMark} />
       </View>
-      <View flex="10">
-        <ScreenPressable checkMark={checkMark} setCheckMark={setCheckMark} />
-      </View>
+      <MainPressable checkMark={checkMark} setCheckMark={setCheckMark} />
       <View flex="1">
         <Button.Group
           isAttached
