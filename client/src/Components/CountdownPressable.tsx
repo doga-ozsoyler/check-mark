@@ -2,6 +2,7 @@ import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { View, Pressable, HStack } from "native-base";
 import { setInMemory } from "../Helpers/storage";
 import SquareImage from "./SquareImage";
+import CoveringPressable from "./CoveringPressable";
 
 interface Props {
   numberArray: boolean[];
@@ -22,7 +23,7 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
     setVisible,
   } = props;
 
-  const onPress = () => {
+  const tickUp = () => {
     let newArray = [...numberArray];
     for (let j = 0; j < newArray.length; j++) {
       if (!newArray[j]) {
@@ -37,39 +38,26 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
     }
   };
 
-  const onLongPress = () => {
+  const openModal = () => {
     setVisible(true);
     setInMemory("visible", visible);
   };
 
   return (
-    <View flex="10">
-      <Pressable
-        onPress={onPress}
-        h="100%"
-        w="430"
-        paddingLeft={10}
-        onLongPress={onLongPress}
-      >
-        <HStack flexWrap="wrap" h="95%" w="375" mt={5}>
-          {numberArray?.map((el, index) => {
-            {
-              return !el ? (
-                <SquareImage
-                  key={index}
-                  pngPath={`../../assets/empty-square.png`}
-                />
-              ) : (
-                <SquareImage
-                  key={index}
-                  pngPath={`../../assets/full-square.png`}
-                />
-              );
-            }
-          })}
-        </HStack>
-      </Pressable>
-    </View>
+    <CoveringPressable onPress={tickUp} onLongPress={openModal}>
+      {numberArray?.map((el, index) => {
+        {
+          return !el ? (
+            <SquareImage
+              key={index}
+              pngPath={`../../assets/empty-square.png`}
+            />
+          ) : (
+            <SquareImage key={index} pngPath={`../../assets/full-square.png`} />
+          );
+        }
+      })}
+    </CoveringPressable>
   );
 };
 
