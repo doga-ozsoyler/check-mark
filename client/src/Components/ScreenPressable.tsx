@@ -1,6 +1,7 @@
 import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { Image, HStack, Pressable } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setInMemory } from "../Helpers/storage";
 
 interface Props {
   checkMark: number[];
@@ -21,10 +22,7 @@ const ScreenPressable: FunctionComponent<Props> = (props) => {
       setCheckMark(newArr);
     }
 
-    await AsyncStorage.setItem(
-      "@checkMark:checkMark",
-      JSON.stringify(checkMark)
-    );
+    setInMemory("checkMark", checkMark);
   };
 
   return (

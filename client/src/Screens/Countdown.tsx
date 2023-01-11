@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Button, View, Text, Pressable, Image, HStack } from "native-base";
 import EnterNumberModal from "../Components/EnterNumberModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { setInMemory } from "../Helpers/storage";
 interface Props {
   navigation: any;
 }
@@ -33,22 +33,17 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     setNumberArray(newArray);
     setNumber((parseInt(number) > 0 ? parseInt(number) - 1 : 0).toString());
 
-    await AsyncStorage.setItem(
-      "@checkMark:numberArray",
-      JSON.stringify(numberArray)
-    );
-    await AsyncStorage.setItem("@checkMark:number", JSON.stringify(number));
+    setInMemory("numberArray", numberArray);
+    setInMemory("number", number);
   };
 
   const clearSquare = async () => {
     let tempArray = [...numberArray];
     setNumberArray(tempArray.fill(false));
     setNumber(tempArray.length.toString());
-    await AsyncStorage.setItem(
-      "@checkMark:numberArray",
-      JSON.stringify(numberArray)
-    );
-    await AsyncStorage.setItem("@checkMark:number", JSON.stringify(number));
+
+    setInMemory("numberArray", numberArray);
+    setInMemory("number", number);
   };
 
   const deleteCross = async () => {
@@ -67,11 +62,8 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         : parseInt(number);
     setNumber(tempNum.toString());
 
-    await AsyncStorage.setItem(
-      "@checkMark:numberArray",
-      JSON.stringify(numberArray)
-    );
-    await AsyncStorage.setItem("@checkMark:number", JSON.stringify(number));
+    setInMemory("numberArray", numberArray);
+    setInMemory("number", number);
   };
 
   const getCountDown = async () => {
@@ -137,10 +129,7 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
           paddingLeft={10}
           onLongPress={async () => {
             setVisible(true);
-            await AsyncStorage.setItem(
-              "@checkMark:visible",
-              JSON.stringify(visible)
-            );
+            setInMemory("visible", visible);
           }}
         >
           <HStack flexWrap="wrap" h="95%" w="375" mt={5}>

@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, FunctionComponent } from "react";
 import { Button } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setInMemory } from "../Helpers/storage";
 
 interface Props {
   checkMark: number[];
@@ -21,18 +22,12 @@ const ButtonGroup: FunctionComponent<Props> = (props) => {
       setCheckMark(newArr);
     }
 
-    await AsyncStorage.setItem(
-      "@checkMark:checkMark",
-      JSON.stringify(checkMark)
-    );
+    setInMemory("checkMark", checkMark);
   };
 
   const clearCheckMark = async () => {
     setCheckMark([]);
-    await AsyncStorage.setItem(
-      "@checkMark:checkMark",
-      JSON.stringify(checkMark)
-    );
+    setInMemory("checkMark", checkMark);
   };
   return (
     <Button.Group

@@ -14,9 +14,6 @@ const MainScreen: FC<Props> = ({ navigation }) => {
   const getLocalData = async () => {
     const value = await AsyncStorage.getItem("@checkMark:checkMark");
     const parsedValue = value != null ? JSON.parse(value) : null;
-    console.log("parsedValue");
-    console.log(parsedValue);
-    console.log("parsedValue");
 
     if (parsedValue) {
       setCheckMark(parsedValue !== null ? parsedValue : checkMark);
