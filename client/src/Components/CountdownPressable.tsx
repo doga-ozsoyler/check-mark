@@ -39,7 +39,7 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
 
   const openModal = () => {
     setVisible(true);
-    setInMemory("visible", visible);
+    setInMemory("visible", true);
   };
 
   return (

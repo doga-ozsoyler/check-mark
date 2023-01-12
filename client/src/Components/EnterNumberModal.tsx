@@ -14,7 +14,7 @@ const EnterNumberModal: FC<Props> = (props) => {
   const { navigation, visible, setVisible, number, handleChange } = props;
   const onPressOK = async () => {
     setVisible(false);
-    setInMemory("visible", visible);
+    setInMemory("visible", false);
   };
 
   return (
