@@ -22,7 +22,7 @@ const MainTopLine: FunctionComponent<Props> = (props) => {
     }
 
     setCheckMark(tempArray);
-    setInMemory("checkMark", checkMark);
+    setInMemory("checkMark", tempArray);
   };
 
   const clearCheckMark = async () => {
