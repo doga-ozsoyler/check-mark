@@ -2,14 +2,12 @@ import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { setInMemory } from "../Helpers/storage";
 import SquareImage from "./SquareImage";
 import CoveringPressable from "./CoveringPressable";
-import { View } from "react-native";
-import { Image } from "native-base";
 
 interface Props {
   numberArray: { id: number; value: boolean }[];
   setNumberArray: Dispatch<SetStateAction<{ id: number; value: boolean }[]>>;
-  number: string;
-  setNumber: Dispatch<SetStateAction<string>>;
+  numCounter: number;
+  setNumCounter: Dispatch<SetStateAction<number>>;
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
 }
@@ -18,8 +16,8 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
   const {
     numberArray,
     setNumberArray,
-    number,
-    setNumber,
+    numCounter,
+    setNumCounter,
     visible,
     setVisible,
   } = props;
@@ -30,10 +28,10 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
       if (!newArray[j].value) {
         newArray[j].value = true;
         setNumberArray(newArray);
-        setNumber((parseInt(number) > 0 ? parseInt(number) - 1 : 0).toString());
+        setNumCounter(numCounter > 0 ? numCounter - 1 : 0);
 
         setInMemory("numberArray", numberArray);
-        setInMemory("number", number);
+        setInMemory("numCounter", numCounter - 1);
         break;
       }
     }

@@ -10,14 +10,16 @@ interface Props {
 
 const CountdownScreen: FC<Props> = ({ navigation }) => {
   const [visible, setVisible] = useState<boolean>(false);
-  const [number, setNumber] = useState<string>("");
+  const [numInput, setNumInput] = useState<string>("");
+  const [numCounter, setNumCounter] = useState<number>(0);
   const [numberArray, setNumberArray] = useState<
     { id: number; value: boolean }[]
   >([]);
 
   const handleChange = (number: string) => {
     //Also works: const handleChange: (number: string) => void = (number) => setNumber(number);
-    setNumber(number);
+    setNumInput(number);
+    setNumCounter(parseInt(number));
 
     if (parseInt(number)) {
       setNumberArray(
@@ -30,18 +32,16 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
   };
 
   const clearSquare = () => {
-    let tempArray = [...numberArray];
+    let tempArray = Array.from({ length: numberArray.length }, () => ({
+      id: Math.random(),
+      value: false,
+    }));
 
-    setNumberArray(
-      Array.from({ length: tempArray.length }, () => ({
-        id: Math.random(),
-        value: false,
-      }))
-    );
-    setNumber(tempArray.length.toString());
+    setNumberArray(tempArray);
+    setNumCounter(tempArray.length);
 
-    setInMemory("numberArray", numberArray);
-    setInMemory("number", number);
+    setInMemory("numberArray", tempArray);
+    setInMemory("numCounter", tempArray.length);
   };
 
   const deleteCross = () => {
@@ -53,20 +53,17 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
       }
     }
     setNumberArray(newArray);
-
-    let tempNum =
-      parseInt(number) + 1 <= numberArray.length
-        ? parseInt(number) + 1
-        : parseInt(number);
-    setNumber(tempNum.toString());
+    setNumCounter(
+      numCounter + 1 <= numberArray.length ? numCounter + 1 : numCounter
+    );
 
     setInMemory("numberArray", numberArray);
-    setInMemory("number", number);
+    setInMemory("numCounter", numCounter);
   };
 
   const getCountDown = async () => {
     setNumberArray(await getFromMemory("numberArray", numberArray));
-    setNumber(await getFromMemory("number", number));
+    setNumCounter(await getFromMemory("numCounter", numCounter));
     setVisible(await getFromMemory("visible", visible));
   };
 
@@ -80,12 +77,12 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         navigation={navigation}
         setVisible={setVisible}
         visible={visible}
-        number={number}
+        number={numInput}
         handleChange={handleChange}
       />
       <View flexDirection="row" flex="1" justifyContent="space-between">
         <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
-          {parseInt(number) ? parseInt(number) : 0}
+          {numCounter ? numCounter : 0}
         </Text>
         <Button.Group
           isAttached
@@ -103,8 +100,8 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
       <CountdownPressable
         numberArray={numberArray}
         setNumberArray={setNumberArray}
-        number={number}
-        setNumber={setNumber}
+        numCounter={numCounter}
+        setNumCounter={setNumCounter}
         visible={visible}
         setVisible={setVisible}
       />

@@ -10,8 +10,6 @@ interface Props {
 
 const MainScreen: FC<Props> = ({ navigation }) => {
   const [checkMark, setCheckMark] = useState<number[]>([]);
-  console.log(checkMark);
-  console.log(typeof checkMark);
 
   const getLocalData = async () => {
     setCheckMark(await getFromMemory("checkMark", checkMark));
