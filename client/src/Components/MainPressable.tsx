@@ -2,6 +2,11 @@ import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { Image } from "native-base";
 import { setInMemory } from "../Helpers/storage";
 import CoveringPressable from "./CoveringPressable";
+import StrokeOne from "./Strokes/StrokeOne";
+import StrokeTwo from "./Strokes/StrokeTwo";
+import StrokeThree from "./Strokes/StrokeThree";
+import StrokeFour from "./Strokes/StrokeFour";
+import StrokeFive from "./Strokes/StrokeFive";
 
 interface Props {
   checkMark: number[];
@@ -21,7 +26,6 @@ const ScreenPressable: FunctionComponent<Props> = (props) => {
       newArr[newArr.length - 1]++;
       setCheckMark(newArr);
     }
-
     setInMemory("checkMark", checkMark);
   };
 
@@ -29,67 +33,19 @@ const ScreenPressable: FunctionComponent<Props> = (props) => {
     <CoveringPressable onPress={addCheckMark}>
       {checkMark.map((element, index) => {
         if (element === 5) {
-          return (
-            <Image
-              source={require("../../assets/5.png")}
-              resizeMode="contain"
-              alt="1"
-              h="70"
-              w="60"
-              mb={3}
-              key={index}
-            />
-          );
+          return <StrokeFive key={index} />;
         } else {
           return Array(element)
             .fill(true)
             .map((_, index) => {
               if (index === 0) {
-                return (
-                  <Image
-                    source={require(`../../assets/1.png`)}
-                    resizeMode="contain"
-                    alt="1"
-                    h="70"
-                    w="3"
-                    ml={1.5}
-                    key={index}
-                  />
-                );
+                return <StrokeOne key={index} />;
               } else if (index === 1) {
-                return (
-                  <Image
-                    source={require(`../../assets/2.png`)}
-                    resizeMode="contain"
-                    alt="1"
-                    h="70"
-                    w="2.5"
-                    key={index}
-                  />
-                );
+                return <StrokeTwo key={index} />;
               } else if (index === 2) {
-                return (
-                  <Image
-                    source={require(`../../assets/3.png`)}
-                    resizeMode="contain"
-                    alt="1"
-                    h="70"
-                    w="3"
-                    key={index}
-                  />
-                );
+                return <StrokeThree key={index} />;
               } else {
-                return (
-                  <Image
-                    source={require(`../../assets/4.png`)}
-                    resizeMode="contain"
-                    alt="1"
-                    h="70"
-                    w="2"
-                    ml={0.5}
-                    key={index}
-                  />
-                );
+                return <StrokeFour key={index} />;
               }
             });
         }
