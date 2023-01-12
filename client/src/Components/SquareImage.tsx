@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { View, Image } from "native-base";
+import { Image } from "native-base";
 
 interface Props {
   index: number;
