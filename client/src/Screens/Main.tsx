@@ -1,25 +1,20 @@
 import React, { FC, useState, useEffect } from "react";
-import { NativeBaseProvider, View, Text } from "native-base";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import ScreenPressable from "../Components/ScreenPressable";
-import ButtonGroup from "../Components/ButtonGroup";
+import { StyleSheet } from "react-native";
+import { View } from "native-base";
+import MainPressable from "../Components/MainPressable";
+import { getFromMemory, setInMemory } from "../Helpers/storage";
+import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
+import NavigaterButtonGroup from "../Components/NavigaterButtonGroup";
+import MainTopLine from "../Components/MainTopLine";
+interface Props {
+  navigation: any;
+}
 
-const MainScreen: FC = () => {
+const MainScreen: FC<Props> = ({ navigation }) => {
   const [checkMark, setCheckMark] = useState<number[]>([]);
 
   const getLocalData = async () => {
-    const value = await AsyncStorage.getItem("@checkMark:checkMark");
-    const parsedValue = value != null ? JSON.parse(value) : null;
-
-    if (parsedValue) {
-      setCheckMark(
-        parsedValue.checkMark !== null ? parsedValue.checkMark : checkMark
-      );
-    }
-  };
-
-  const getMarkNumber = () => {
-    return (checkMark.length - 1) * 5 + checkMark[checkMark.length - 1];
+    setCheckMark(await getFromMemory("checkMark", checkMark));
   };
 
   useEffect(() => {
@@ -27,21 +22,22 @@ const MainScreen: FC = () => {
   }, []);
 
   return (
-    <NativeBaseProvider>
-      <View flex="1">
-        <View flexDirection="row" flex="1" justifyContent="space-between">
-          <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
-            {getMarkNumber() ? getMarkNumber() : 0}
-          </Text>
-
-          <ButtonGroup checkMark={checkMark} setCheckMark={setCheckMark} />
-        </View>
-        <View flex="10">
-          <ScreenPressable checkMark={checkMark} setCheckMark={setCheckMark} />
-        </View>
-      </View>
-    </NativeBaseProvider>
+    <View style={styles.container}>
+      <MainTopLine checkMark={checkMark} setCheckMark={setCheckMark} />
+      <MainPressable checkMark={checkMark} setCheckMark={setCheckMark} />
+      <NavigaterButtonGroup
+        navigation={navigation}
+        screenName="CountdownScreen"
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#2D3033",
+  },
+});
 
 export default MainScreen;
