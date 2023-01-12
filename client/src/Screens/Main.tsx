@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { View, Text, Button } from "native-base";
+import { View, Button } from "native-base";
 import MainPressable from "../Components/MainPressable";
-import ButtonGroup from "../Components/ButtonGroup";
-import { getFromMemory } from "../Helpers/storage";
+import { getFromMemory, setInMemory } from "../Helpers/storage";
+import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
 interface Props {
   navigation: any;
 }
@@ -19,6 +19,25 @@ const MainScreen: FC<Props> = ({ navigation }) => {
     return (checkMark.length - 1) * 5 + checkMark[checkMark.length - 1];
   };
 
+  const decreaseCheckMark = async () => {
+    let lastElement = checkMark[checkMark.length - 1];
+
+    if (!lastElement || lastElement === 1) {
+      setCheckMark(checkMark.slice(0, -1));
+    } else {
+      let newArr = [...checkMark];
+      newArr[newArr.length - 1]--;
+      setCheckMark(newArr);
+    }
+
+    setInMemory("checkMark", checkMark);
+  };
+
+  const clearCheckMark = async () => {
+    setCheckMark([]);
+    setInMemory("checkMark", checkMark);
+  };
+
   useEffect(() => {
     getLocalData();
     console.log(checkMark);
@@ -26,12 +45,12 @@ const MainScreen: FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View flexDirection="row" flex="1" justifyContent="space-between">
-        <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
-          {getMarkNumber() ? getMarkNumber() : 0}
-        </Text>
-        <ButtonGroup checkMark={checkMark} setCheckMark={setCheckMark} />
-      </View>
+      <CounterAndButtonGroup
+        counter={getMarkNumber()}
+        onPressClear={clearCheckMark}
+        onPressMinus={decreaseCheckMark}
+      />
+
       <MainPressable checkMark={checkMark} setCheckMark={setCheckMark} />
       <View flex="1">
         <Button.Group

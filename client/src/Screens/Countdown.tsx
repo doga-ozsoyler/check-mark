@@ -1,9 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { Button, View, Text } from "native-base";
+import { Button, View } from "native-base";
 import EnterNumberModal from "../Components/EnterNumberModal";
 import { setInMemory, getFromMemory } from "../Helpers/storage";
 import CountdownPressable from "../Components/CountdownPressable";
+import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
+
 interface Props {
   navigation: any;
 }
@@ -80,23 +82,12 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         number={numInput}
         handleChange={handleChange}
       />
-      <View flexDirection="row" flex="1" justifyContent="space-between">
-        <Text color="#fff" ml={9} fontSize="2xl" alignSelf="flex-end" bold>
-          {numCounter ? numCounter : 0}
-        </Text>
-        <Button.Group
-          isAttached
-          alignSelf="flex-end"
-          colorScheme="teal"
-          size="sm"
-          mr={8}
-        >
-          <Button onPress={clearSquare}>Clear</Button>
-          <Button w="45px" variant="outline" onPress={deleteCross}>
-            +
-          </Button>
-        </Button.Group>
-      </View>
+      <CounterAndButtonGroup
+        counter={numCounter}
+        onPressClear={clearSquare}
+        onPressMinus={deleteCross}
+      />
+
       <CountdownPressable
         numberArray={numberArray}
         setNumberArray={setNumberArray}
