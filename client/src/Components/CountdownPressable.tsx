@@ -8,19 +8,12 @@ interface Props {
   setNumberArray: Dispatch<SetStateAction<{ id: number; value: boolean }[]>>;
   numCounter: number;
   setNumCounter: Dispatch<SetStateAction<number>>;
-  visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
 }
 
 const CountdownPressable: FunctionComponent<Props> = (props) => {
-  const {
-    numberArray,
-    setNumberArray,
-    numCounter,
-    setNumCounter,
-    visible,
-    setVisible,
-  } = props;
+  const { numberArray, setNumberArray, numCounter, setNumCounter, setVisible } =
+    props;
 
   const tickUp = () => {
     let newArray = [...numberArray];

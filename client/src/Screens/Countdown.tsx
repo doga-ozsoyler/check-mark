@@ -6,6 +6,7 @@ import { setInMemory, getFromMemory } from "../Helpers/storage";
 import CountdownPressable from "../Components/CountdownPressable";
 import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
 import NavigaterButtonGroup from "../Components/NavigaterButtonGroup";
+import { createArray } from "../Helpers/createAndSave";
 
 interface Props {
   navigation: any;
@@ -22,23 +23,15 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
   const handleChange = (number: string) => {
     //Also works: const handleChange: (number: string) => void = (number) => setNumber(number);
     setNumInput(number);
-    setNumCounter(parseInt(number));
 
     if (parseInt(number)) {
-      setNumberArray(
-        Array.from({ length: parseInt(number) }, () => ({
-          id: Math.random(),
-          value: false,
-        }))
-      );
+      setNumCounter(parseInt(number));
+      setNumberArray(createArray(parseInt(number)));
     }
   };
 
   const clearSquare = () => {
-    let tempArray = Array.from({ length: numberArray.length }, () => ({
-      id: Math.random(),
-      value: false,
-    }));
+    let tempArray = createArray(numberArray.length);
 
     setNumberArray(tempArray);
     setNumCounter(tempArray.length);
@@ -57,7 +50,7 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     }
     setNumberArray(newArray);
     setNumCounter(
-      numCounter + 1 <= numberArray.length ? numCounter + 1 : numCounter
+      numCounter + 1 <= newArray.length ? numCounter + 1 : numCounter
     );
 
     setInMemory("numberArray", numberArray);
@@ -94,7 +87,6 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         setNumberArray={setNumberArray}
         numCounter={numCounter}
         setNumCounter={setNumCounter}
-        visible={visible}
         setVisible={setVisible}
       />
       <NavigaterButtonGroup navigation={navigation} screenName="MainScreen" />
