@@ -2,11 +2,11 @@ import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { View } from "native-base";
 import EnterNumberModal from "../Components/EnterNumberModal";
-import { setInMemory, getFromMemory } from "../Helpers/storage";
+import { getFromMemory } from "../Helpers/storage";
 import CountdownPressable from "../Components/CountdownPressable";
-import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
 import NavigaterButtonGroup from "../Components/NavigaterButtonGroup";
 import { createArray } from "../Helpers/createAndSave";
+import CountdownTopLine from "../Components/CountdownTopLine";
 
 interface Props {
   navigation: any;
@@ -30,33 +30,6 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
     }
   };
 
-  const clearSquare = () => {
-    let tempArray = createArray(numberArray.length);
-
-    setNumberArray(tempArray);
-    setNumCounter(tempArray.length);
-
-    setInMemory("numberArray", tempArray);
-    setInMemory("numCounter", tempArray.length);
-  };
-
-  const deleteCross = () => {
-    let newArray = [...numberArray];
-    for (let i = newArray.length - 1; i >= 0; i--) {
-      if (newArray[i].value) {
-        newArray[i].value = false;
-        break;
-      }
-    }
-    setNumberArray(newArray);
-    setNumCounter(
-      numCounter + 1 <= newArray.length ? numCounter + 1 : numCounter
-    );
-
-    setInMemory("numberArray", numberArray);
-    setInMemory("numCounter", numCounter);
-  };
-
   const getCountDown = async () => {
     setNumberArray(await getFromMemory("numberArray", numberArray));
     setNumCounter(await getFromMemory("numCounter", numCounter));
@@ -76,10 +49,11 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         number={numInput}
         handleChange={handleChange}
       />
-      <CounterAndButtonGroup
-        counter={numCounter}
-        onPressClear={clearSquare}
-        onPressMinus={deleteCross}
+      <CountdownTopLine
+        numberArray={numberArray}
+        setNumberArray={setNumberArray}
+        numCounter={numCounter}
+        setNumCounter={setNumCounter}
       />
 
       <CountdownPressable

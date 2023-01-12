@@ -1,10 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { View, Button } from "native-base";
+import { View } from "native-base";
 import MainPressable from "../Components/MainPressable";
 import { getFromMemory, setInMemory } from "../Helpers/storage";
 import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
 import NavigaterButtonGroup from "../Components/NavigaterButtonGroup";
+import MainTopLine from "../Components/MainTopLine";
 interface Props {
   navigation: any;
 }
@@ -16,42 +17,13 @@ const MainScreen: FC<Props> = ({ navigation }) => {
     setCheckMark(await getFromMemory("checkMark", checkMark));
   };
 
-  const getMarkNumber = () => {
-    return (checkMark.length - 1) * 5 + checkMark[checkMark.length - 1];
-  };
-
-  const decreaseCheckMark = async () => {
-    let lastElement = checkMark[checkMark.length - 1];
-
-    if (!lastElement || lastElement === 1) {
-      setCheckMark(checkMark.slice(0, -1));
-    } else {
-      let newArr = [...checkMark];
-      newArr[newArr.length - 1]--;
-      setCheckMark(newArr);
-    }
-
-    setInMemory("checkMark", checkMark);
-  };
-
-  const clearCheckMark = async () => {
-    setCheckMark([]);
-    setInMemory("checkMark", checkMark);
-  };
-
   useEffect(() => {
     getLocalData();
-    console.log(checkMark);
   }, []);
 
   return (
     <View style={styles.container}>
-      <CounterAndButtonGroup
-        counter={getMarkNumber()}
-        onPressClear={clearCheckMark}
-        onPressMinus={decreaseCheckMark}
-      />
-
+      <MainTopLine checkMark={checkMark} setCheckMark={setCheckMark} />
       <MainPressable checkMark={checkMark} setCheckMark={setCheckMark} />
       <NavigaterButtonGroup
         navigation={navigation}

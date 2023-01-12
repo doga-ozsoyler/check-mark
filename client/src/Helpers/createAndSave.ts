@@ -4,3 +4,7 @@ export const createArray = (length: number) => {
     value: false,
   }));
 };
+
+export const getMarkNumber = (array: number[]) => {
+  return (array.length - 1) * 5 + array[array.length - 1];
+};
