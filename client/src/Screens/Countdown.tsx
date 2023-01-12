@@ -11,20 +11,33 @@ interface Props {
 const CountdownScreen: FC<Props> = ({ navigation }) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [number, setNumber] = useState<string>("");
-  const [numberArray, setNumberArray] = useState<boolean[]>([]);
+  const [numberArray, setNumberArray] = useState<
+    { id: number; value: boolean }[]
+  >([]);
 
   const handleChange = (number: string) => {
     //Also works: const handleChange: (number: string) => void = (number) => setNumber(number);
     setNumber(number);
 
     if (parseInt(number)) {
-      setNumberArray(Array(parseInt(number)).fill(false));
+      setNumberArray(
+        Array.from({ length: parseInt(number) }, () => ({
+          id: Math.random(),
+          value: false,
+        }))
+      );
     }
   };
 
   const clearSquare = () => {
     let tempArray = [...numberArray];
-    setNumberArray(tempArray.fill(false));
+
+    setNumberArray(
+      Array.from({ length: tempArray.length }, () => ({
+        id: Math.random(),
+        value: false,
+      }))
+    );
     setNumber(tempArray.length.toString());
 
     setInMemory("numberArray", numberArray);
@@ -34,8 +47,8 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
   const deleteCross = () => {
     let newArray = [...numberArray];
     for (let i = newArray.length - 1; i >= 0; i--) {
-      if (newArray[i]) {
-        newArray[i] = false;
+      if (newArray[i].value) {
+        newArray[i].value = false;
         break;
       }
     }

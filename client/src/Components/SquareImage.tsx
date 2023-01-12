@@ -10,21 +10,19 @@ const SquareImage: FunctionComponent<Props> = (props) => {
   const { index, squareType } = props;
 
   return (
-    <View key={index}>
-      <Image
-        source={
-          squareType
-            ? require(`../../assets/full-square.png`)
-            : require(`../../assets/empty-square.png`)
-        }
-        h="22"
-        w="22"
-        resizeMode="contain"
-        alt="1"
-        mr={(index + 1) % 5 === 0 ? 3 : 0}
-        mb={2}
-      />
-    </View>
+    <Image
+      source={
+        squareType
+          ? require(`../../assets/full-square.png`)
+          : require(`../../assets/empty-square.png`)
+      }
+      h="22"
+      w="22"
+      resizeMode="contain"
+      alt="1"
+      mr={(index + 1) % 5 === 0 ? 3 : 0}
+      mb={2}
+    />
   );
 };
 

@@ -2,10 +2,12 @@ import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { setInMemory } from "../Helpers/storage";
 import SquareImage from "./SquareImage";
 import CoveringPressable from "./CoveringPressable";
+import { View } from "react-native";
+import { Image } from "native-base";
 
 interface Props {
-  numberArray: boolean[];
-  setNumberArray: Dispatch<SetStateAction<boolean[]>>;
+  numberArray: { id: number; value: boolean }[];
+  setNumberArray: Dispatch<SetStateAction<{ id: number; value: boolean }[]>>;
   number: string;
   setNumber: Dispatch<SetStateAction<string>>;
   visible: boolean;
@@ -25,8 +27,8 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
   const tickUp = () => {
     let newArray = [...numberArray];
     for (let j = 0; j < newArray.length; j++) {
-      if (!newArray[j]) {
-        newArray[j] = true;
+      if (!newArray[j].value) {
+        newArray[j].value = true;
         setNumberArray(newArray);
         setNumber((parseInt(number) > 0 ? parseInt(number) - 1 : 0).toString());
 
@@ -42,14 +44,16 @@ const CountdownPressable: FunctionComponent<Props> = (props) => {
     setInMemory("visible", visible);
   };
 
-  console.log("numberArray");
-  console.log(numberArray);
-  console.log("numberArray");
-
   return (
     <CoveringPressable onPress={tickUp} onLongPress={openModal}>
       {numberArray?.map((element, index) => {
-        return <SquareImage index={index} squareType={element} />;
+        return (
+          <SquareImage
+            index={index}
+            squareType={element.value}
+            key={element.value ? element.id : element.id + 1}
+          />
+        );
       })}
     </CoveringPressable>
   );
