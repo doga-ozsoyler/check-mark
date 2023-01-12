@@ -4,6 +4,7 @@ import { View, Button } from "native-base";
 import MainPressable from "../Components/MainPressable";
 import { getFromMemory, setInMemory } from "../Helpers/storage";
 import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
+import NavigaterButtonGroup from "../Components/NavigaterButtonGroup";
 interface Props {
   navigation: any;
 }
@@ -52,23 +53,10 @@ const MainScreen: FC<Props> = ({ navigation }) => {
       />
 
       <MainPressable checkMark={checkMark} setCheckMark={setCheckMark} />
-      <View flex="1">
-        <Button.Group
-          isAttached
-          alignSelf="center"
-          colorScheme="teal"
-          size="sm"
-          borderRadius="50"
-        >
-          <Button w="100px">Count</Button>
-          <Button
-            variant="outline"
-            onPress={() => navigation.navigate("CountdownScreen")}
-          >
-            Countdown
-          </Button>
-        </Button.Group>
-      </View>
+      <NavigaterButtonGroup
+        navigation={navigation}
+        screenName="CountdownScreen"
+      />
     </View>
   );
 };

@@ -1,10 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { Button, View } from "native-base";
+import { View } from "native-base";
 import EnterNumberModal from "../Components/EnterNumberModal";
 import { setInMemory, getFromMemory } from "../Helpers/storage";
 import CountdownPressable from "../Components/CountdownPressable";
 import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
+import NavigaterButtonGroup from "../Components/NavigaterButtonGroup";
 
 interface Props {
   navigation: any;
@@ -96,24 +97,7 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
         visible={visible}
         setVisible={setVisible}
       />
-      <View flex="1">
-        <Button.Group
-          isAttached
-          alignSelf="center"
-          colorScheme="teal"
-          size="sm"
-          borderRadius="50"
-        >
-          <Button
-            w="100px"
-            variant="outline"
-            onPress={() => navigation.navigate("MainScreen")}
-          >
-            Count
-          </Button>
-          <Button>Countdown</Button>
-        </Button.Group>
-      </View>
+      <NavigaterButtonGroup navigation={navigation} screenName="MainScreen" />
     </View>
   );
 };
