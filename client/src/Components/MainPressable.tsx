@@ -18,15 +18,16 @@ const ScreenPressable: FunctionComponent<Props> = (props) => {
 
   const addCheckMark = async () => {
     let lastElement = checkMark[checkMark.length - 1];
+    let tempArray = [...checkMark];
 
     if (!lastElement || lastElement === 5) {
-      setCheckMark([...checkMark, 1]);
+      tempArray = [...tempArray, 1];
     } else {
-      let newArr = [...checkMark];
-      newArr[newArr.length - 1]++;
-      setCheckMark(newArr);
+      tempArray[tempArray.length - 1]++;
     }
-    setInMemory("checkMark", checkMark);
+
+    setCheckMark(tempArray);
+    setInMemory("checkMark", tempArray);
   };
 
   return (
