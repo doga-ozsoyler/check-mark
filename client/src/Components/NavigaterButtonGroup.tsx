@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Button, View } from "native-base";
+import { Button, View, useToast } from "native-base";
 
 interface Props {
   navigation: any;
@@ -8,9 +8,19 @@ interface Props {
 
 const NavigaterButtonGroup: FunctionComponent<Props> = (props) => {
   const { navigation, screenName } = props;
+  const toast = useToast();
 
   const navigateScreen = () => {
     navigation.navigate(screenName);
+
+    toast.closeAll();
+    if (screenName === "CountdownScreen") {
+      toast.show({
+        title: "Use long press to change the number",
+        placement: "top",
+        duration: 2000,
+      });
+    }
   };
 
   return (
