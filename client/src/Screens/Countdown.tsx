@@ -38,6 +38,8 @@ const CountdownScreen: FC<Props> = ({ navigation }) => {
 
   useEffect(() => {
     getCountDown();
+
+    return () => {};
   }, []);
 
   return (
