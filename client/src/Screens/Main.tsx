@@ -20,9 +20,7 @@ const MainScreen: FC<Props> = ({ navigation }) => {
   useEffect(() => {
     getLocalData();
 
-    return () => {
-      setCheckMark([]);
-    };
+    return () => {};
   }, []);
 
   return (
