@@ -13,15 +13,15 @@ const CoveringPressable: FunctionComponent<PropsWithChildren<Props>> = (
   const { onPress, onLongPress, children } = props;
 
   return (
-    <View flex="10">
+    <View alignItems="center" flex="10">
       <Pressable
         onPress={onPress}
         h="100%"
-        w="430"
-        paddingLeft={10}
+        w="85%"
+        alignItems="center"
         onLongPress={onLongPress}
       >
-        <HStack flexWrap="wrap" h="95%" w="375" mt={5}>
+        <HStack flexWrap="wrap" h="95%" w="100%" mt={5}>
           {children}
         </HStack>
       </Pressable>

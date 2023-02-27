@@ -7,8 +7,8 @@ const StrokeTwo: FunctionComponent = () => {
       source={require(`../../../assets/2.png`)}
       resizeMode="contain"
       alt="1"
-      h="70"
-      w="2.5"
+      h="9.5%"
+      w="3%"
     />
   );
 };

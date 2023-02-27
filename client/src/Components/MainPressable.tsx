@@ -1,5 +1,4 @@
 import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
-import { Image } from "native-base";
 import { setInMemory } from "../Helpers/storage";
 import CoveringPressable from "./CoveringPressable";
 import StrokeOne from "./Strokes/StrokeOne";

@@ -7,8 +7,8 @@ const StrokeFive: FunctionComponent = () => {
       source={require("../../../assets/5.png")}
       resizeMode="contain"
       alt="1"
-      h="70"
-      w="60"
+      h="9.5%"
+      w="16.5%"
       mb={3}
     />
   );

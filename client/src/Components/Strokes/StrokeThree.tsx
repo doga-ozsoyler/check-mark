@@ -7,8 +7,8 @@ const StrokeThree: FunctionComponent = () => {
       source={require(`../../../assets/3.png`)}
       resizeMode="contain"
       alt="1"
-      h="70"
-      w="3"
+      h="9.5%"
+      w="3%"
     />
   );
 };

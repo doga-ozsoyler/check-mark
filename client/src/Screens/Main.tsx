@@ -2,8 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { View } from "native-base";
 import MainPressable from "../Components/MainPressable";
-import { getFromMemory, setInMemory } from "../Helpers/storage";
-import CounterAndButtonGroup from "../Components/CounterAndButtonGroup";
+import { getFromMemory } from "../Helpers/storage";
 import NavigaterButtonGroup from "../Components/NavigaterButtonGroup";
 import MainTopLine from "../Components/MainTopLine";
 interface Props {

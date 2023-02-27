@@ -7,8 +7,8 @@ const StrokeOne: FunctionComponent = () => {
       source={require(`../../../assets/1.png`)}
       resizeMode="contain"
       alt="1"
-      h="70"
-      w="3"
+      h="9.5%"
+      w="3%"
       ml={1.5}
     />
   );

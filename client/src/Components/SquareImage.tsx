@@ -16,12 +16,11 @@ const SquareImage: FunctionComponent<Props> = (props) => {
           ? require(`../../assets/full-square.png`)
           : require(`../../assets/empty-square.png`)
       }
-      h="22"
-      w="22"
+      h="6%"
+      w="6%"
       resizeMode="contain"
       alt="1"
-      mr={(index + 1) % 5 === 0 ? 3 : 0}
-      mb={2}
+      mr={(index + 1) % 5 === 0 ? "3%" : 0}
     />
   );
 };
