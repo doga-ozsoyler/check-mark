@@ -21,7 +21,6 @@ const SquareImage: FunctionComponent<Props> = (props) => {
       resizeMode="contain"
       alt="1"
       mr={(index + 1) % 5 === 0 ? "3%" : 0}
-      mb={2}
     />
   );
 };
