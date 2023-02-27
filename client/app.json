@@ -1,18 +1,19 @@
 {
   "expo": {
-    "name": "client",
+    "name": "Check Mark",
     "slug": "check-mark",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/check-mark-logo.png",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/5.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2D3033"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/3cfa2466-fe42-4ea9-aec3-d7cca5af2cd4"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -22,9 +23,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/check-mark-logo-adaptive.png",
+        "backgroundColor": "#2D3033"
+      },
+      "package": "com.dogaozsoyler.checkmark"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,6 +36,9 @@
         "projectId": "3cfa2466-fe42-4ea9-aec3-d7cca5af2cd4"
       }
     },
-    "owner": "limelight7151"
+    "owner": "limelight7151",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }
