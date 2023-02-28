@@ -2,7 +2,7 @@
   "expo": {
     "name": "Check Mark",
     "slug": "check-mark",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/check-mark-logo.png",
     "userInterfaceStyle": "dark",
@@ -15,9 +15,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/3cfa2466-fe42-4ea9-aec3-d7cca5af2cd4"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
