@@ -107,3 +107,6 @@ dist
 
 
 client/pc-api-*
+
+# Google console key
+client/pc-api-*.json
