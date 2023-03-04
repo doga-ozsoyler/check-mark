@@ -103,3 +103,10 @@ dist
 # TernJS port file
 .tern-port
 .vscode/settings.json
+
+
+
+client/pc-api-*
+
+# Google console key
+client/pc-api-*.json
