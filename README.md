@@ -1,8 +1,9 @@
-# Check Mark
+# Tally
 
 It is app to count and countdown.
 
 ## Screenshots
+
 **Count Screen**
 
 <img src="https://github.com/doga-ozsoyler/check-mark/blob/master/Images/count-screen.jpg" width="250" title="Count Screen">

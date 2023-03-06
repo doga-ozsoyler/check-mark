@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Check Mark",
-    "slug": "check-mark",
+    "name": "Tally",
+    "slug": "Tally",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/check-mark-logo.png",
@@ -36,7 +36,7 @@
     },
     "owner": "limelight7151",
     "runtimeVersion": {
-      "policy": "appVersion"
+      "policy": "sdkVersion"
     }
   }
 }
