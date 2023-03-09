@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tally",
     "slug": "Tally",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/check-mark-logo.png",
     "userInterfaceStyle": "dark",
@@ -15,7 +15,9 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/3cfa2466-fe42-4ea9-aec3-d7cca5af2cd4"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -24,19 +26,20 @@
         "foregroundImage": "./assets/check-mark-logo-adaptive.png",
         "backgroundColor": "#2D3033"
       },
-      "package": "com.dogaozsoyler.checkmark"
+      "package": "com.dogaozsoyler.checkmark",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "3cfa2466-fe42-4ea9-aec3-d7cca5af2cd4"
-      }
-    },
     "owner": "limelight7151",
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a247dde9-e45c-4d90-b840-51450e2a09b6"
+      }
     }
   }
 }
