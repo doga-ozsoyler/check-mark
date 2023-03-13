@@ -1,16 +1,18 @@
-# Check Mark
+# Tally
 
-It is app to count and countdown.
+Tally application is a simple counter. You can increase the counter by tapping the screen. You can also lower it by tapping the minus button up top. In the countdown screen you can set a number to count down as you tap.
 
 ## Screenshots
-**Count Screen**
 
-<img src="https://github.com/doga-ozsoyler/check-mark/blob/master/Images/count-screen.jpg" width="250" title="Count Screen">
-
-**Countdown Screen**
-
-<img src="https://github.com/doga-ozsoyler/check-mark/blob/master/Images/countdown-screen.jpg" width="250" title="Countdown Screen"> <img src="https://github.com/doga-ozsoyler/check-mark/blob/master/Images/countdown-screen-with-toggle.jpg" width="250" title="Countdown Screen With Toggle"> <img src="https://github.com/doga-ozsoyler/check-mark/blob/master/Images/countdown-screen-with-modal.jpg" width="250" title="Countdown Screen With Modal">
+<img src="https://github.com/doga-ozsoyler/tally/blob/develop/Images/all-screen.png" width="850" title="Count Screen">
 
 ## Tech Stack
 
 **Client:** React Native, Typescript, Async Storage, Native Base, Expo
+
+## 🔗 Links
+
+[<img src=https://github.com/steverichey/google-play-badge-svg/blob/master/img/en_get.svg width="150" title="Google Play">](https://play.google.com/store/apps/details?id=com.dogaozsoyler.checkmark)
+
+[![youtube](https://img.shields.io/badge/YouTube-E50914?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/shorts/FroxYkqgq44)
+[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sirin-doga-ozsoyler/)
