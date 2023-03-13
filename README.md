@@ -12,7 +12,7 @@ Tally application is a simple counter. You can increase the counter by tapping t
 
 ## 🔗 Links
 
-[<img src=https://github.com/steverichey/google-play-badge-svg/blob/master/img/en_get.svg width="150" title="Google Play">]([http://example.com/](https://play.google.com/store/books))
+[<img src=https://github.com/steverichey/google-play-badge-svg/blob/master/img/en_get.svg width="150" title="Google Play">](https://play.google.com/store/apps/details?id=com.dogaozsoyler.checkmark)
 
 [![youtube](https://img.shields.io/badge/YouTube-E50914?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/shorts/FroxYkqgq44)
 [![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sirin-doga-ozsoyler/)
