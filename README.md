@@ -8,7 +8,7 @@ Tally application is a simple counter. You can increase the counter by tapping t
 
 ## Tech Stack
 
-**Client:** React Native, Typescript, Async Storage, Native Base, Expo
+**Client:** React Native, Typescript, Async Storage, Native Base, Expo, React Navigation
 
 ## 🔗 Links
 
